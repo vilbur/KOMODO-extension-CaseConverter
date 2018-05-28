@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE overlay PUBLIC "-//MOZILLA//DTD XUL V1.0//EN" "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" [
+	<!ENTITY % paneDTD SYSTEM "chrome://CaseConverter/locale/pane.dtd">%paneDTD;
+]>
+
+<?xml-stylesheet type="text/css" href="less://komodo/skin/global/global.less"?>
+<?xml-stylesheet type="text/css" href="chrome://komodo/skin/bindings/buttons.css"?>
+<?xml-stylesheet type="text/css" href="chrome://komodo/skin/bindings/views.css"?>
+<?xml-stylesheet type="text/css" href="chrome://komodo/skin/bindings/scintilla.css"?>
+<?xml-stylesheet type="text/css" href="chrome://komodo/skin/bindings/partviewer.css"?>
+<?xml-stylesheet type="text/css" href="chrome://komodo/skin/bindings/widgets.css"?>
+<?xml-stylesheet type="text/css" href="chrome://komodo/skin/codeintel.css"?>
+<?xml-stylesheet type="text/css" href="chrome://komodo/skin/codeintel/sectionlist.css"?>
+<?xml-stylesheet type="text/css" href="chrome://komodo/skin/hyperlinks.css"?>
+<?xml-stylesheet type="text/css" href="chrome://komodo/skin/rxx/rxx-overlay.css"?>
+<?xml-stylesheet type="text/css" href="chrome://komodo/skin/sleuth.css"?>
+<?xml-stylesheet type="text/css" href="chrome://komodo/skin/autocomplete.css"?>
+<?xml-stylesheet type="text/css" href="chrome://komodo/skin/find.css"?>
+<?xml-stylesheet type="text/css" href="chrome://komodo/skin/debugger.css"?>
+<?xml-stylesheet type="text/css" href="chrome://komodo/skin/bindings/debugger.css"?>
+
+<?xml-stylesheet type="text/css" href="chrome://CaseConverter/skin/pane.css"?>
+
+<page
+	id="CaseConverter-pane"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	onload="ko.extensions.CaseConverter.Komodo.Pane.init();"
+>
+
+    <script type="application/x-javascript" src="chrome://komodo/content/library/less_loader.js"/>
+	
+	<!--EXTENSION CONNECTION TO KOMODO-->
+    <script type="application/x-javascript" src="chrome://CaseConverter/content/js/namespace.js"/>
+    <script type="application/x-javascript" src="chrome://CaseConverter/content/js/CaseConverter.js"/>	
+    <script type="application/x-javascript" src="chrome://CaseConverter/content/js/Komodo/Komodo/Komodo.js"/>
+	<script type="application/x-javascript" src="chrome://CaseConverter/content/js/Komodo/Document/Document.js"/>
+	<script type="application/x-javascript" src="chrome://CaseConverter/content/js/Komodo/UI/UI.js"/>
+	<script type="application/x-javascript" src="chrome://CaseConverter/content/js/Komodo/UI/Controls/ControlSet/ControlSet.js"/>
+	<script type="application/x-javascript" src="chrome://CaseConverter/content/js/Komodo/UI/Controls/Dropdown/Dropdown.js"/>
+	<script type="application/x-javascript" src="chrome://CaseConverter/content/js/Komodo/Prefs/Prefs.js"/>	
+    <script type="application/x-javascript" src="chrome://CaseConverter/content/js/Komodo/window/Pane/Pane.js"/>
+    <!--<script type="application/x-javascript" src="chrome://CaseConverter/content/js/Komodo/window/PrefsWindow/PrefsWindow.js"/>		-->
+    <script type="application/x-javascript" src="chrome://CaseConverter/content/js/Komodo/Node/Node.js"/>
+
+
+	<!--EXTENSION SCRIPTS-->
+    <script type="application/x-javascript" src="chrome://CaseConverter/content/js/Converter/Converter.js"/>
+	<script type="application/x-javascript" src="chrome://CaseConverter/content/js/Converter/StringCaseType/StringCaseType.js"/>
+	<script type="application/x-javascript" src="chrome://CaseConverter/content/js/Converter/StringCaseConverter/StringCaseConverter.js"/>
+
+	<!--TEST-->
+    <script type="application/x-javascript" src="chrome://CaseConverter/content/js/Komodo/UI/Test/UITest.js"/>
+	
+	<hbox>
+		<!--TEST EXTENSION NAMESPACE-->
+		<vbox style="max-width:128px;">
+			<button label="CaseConverter.test()" oncommand="CaseConverter().test();" />
+			<!--<button label="Komodo.Pane.test()" tooltiptext="CaseConverter.Komodo.Pane.test()" oncommand="CaseConverter().Komodo.Pane.test();" />-->
+			<button label="CaseConverter.Converter().test()" tooltiptext="CaseConverter().Converter.test()" oncommand="CaseConverter().Converter.test();" />
+		</vbox>
+		
+		<!--UITest-->
+		<vbox id="UiTest-pane"><!-- UiTest wrapper with id attribute - Not required, but bettwer if exists -->
+			<button 
+				label="UITest.ini()"
+				style="border:1px solid lightblue"
+				oncommand="ko.windowManager.getMainWindow().ko.extensions.CaseConverter.UITest.init(this);"/>
+		</vbox>
+		
+<!--		<vbox id="ui_test_controlset_load_to_markup">
+			<caption  label="Control set by markup"/>
+			<checkbox/>
+			<textbox/>
+		</vbox>-->
+
+	</hbox>
+
+			
+
+
+</page>

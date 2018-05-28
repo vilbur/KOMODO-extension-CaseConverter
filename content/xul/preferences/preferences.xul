@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<!DOCTYPE overlay PUBLIC "-//MOZILLA//DTD XUL V1.0//EN" "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" [
+	<!ENTITY % preferencesDTD SYSTEM "chrome://CaseConverter/locale/preferences.dtd">%preferencesDTD;
+]>
+
+
+<?xml-stylesheet type="text/css" href="chrome://global/skin"?>
+<?xml-stylesheet type="text/css" href="chrome://komodo/skin/"?>
+<?xml-stylesheet type="text/css" href="chrome://komodo/skin/global/global.css"?>
+<?xml-stylesheet type="text/css" href="chrome://komodo/skin/bindings/buttons.css"?>
+<?xml-stylesheet type="text/css" href="chrome://komodo/skin/bindings/widgets.css"?>
+<?xml-stylesheet type="text/css" href="chrome://komodo/skin/bindings/listbox.css"?>
+<?xml-stylesheet type="text/css" href="chrome://komodo/skin/prefs/prefs.css"?>
+
+<?xml-stylesheet type="text/css" href="chrome://CaseConverter/skin/preferences.css"?>
+
+<window
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	class="kodialog"
+	orient="vertical"
+	onload="ko.windowManager.getMainWindow().ko.extensions.CaseConverter.Komodo.PrefsWindow.init();"
+>
+	
+	<script type="application/x-javascript;version=1.7" src="chrome://komodo/content/pref/koPrefUtils.js" />
+
+	<script type="application/x-javascript;version=1.7" src="chrome://xtk/content/xtk.js"/>
+	<!--<script type="application/x-javascript;version=1.7" src="chrome://komodo/content/library/logging.js"/>-->
+	<!--<script type="application/x-javascript;version=1.7" src="chrome://komodo/content/library/dialogs.js"/>-->
+	<script type="application/x-javascript;version=1.7" src="chrome://komodo/content/library/windowManager.js"/>
+	<!--<script type="application/x-javascript;version=1.7" src="chrome://komodo/content/library/filepickers.js"/>-->
+	<!--<script type="application/x-javascript;version=1.7" src="chrome://komodo/content/library/uriparse.js"/>-->
+	<!--<script type="application/x-javascript;version=1.7" src="chrome://komodo/content/pref/koPrefUtils.js" />-->
+	
+	<!--EXTENSION CONNECTION TO KOMODO-->
+    <script type="application/x-javascript" src="chrome://CaseConverter/content/js/namespace.js"/>
+    <script type="application/x-javascript" src="chrome://CaseConverter/content/js/CaseConverter.js"/>	
+    <script type="application/x-javascript" src="chrome://CaseConverter/content/js/Komodo/Komodo/Komodo.js"/>
+	<script type="application/x-javascript" src="chrome://CaseConverter/content/js/Komodo/Document/Document.js"/>
+	<script type="application/x-javascript" src="chrome://CaseConverter/content/js/Komodo/UI/UI.js"/>
+	<script type="application/x-javascript" src="chrome://CaseConverter/content/js/Komodo/UI/Controls/ControlSet/ControlSet.js"/>
+	<script type="application/x-javascript" src="chrome://CaseConverter/content/js/Komodo/UI/Controls/Dropdown/Dropdown.js"/>
+	<script type="application/x-javascript" src="chrome://CaseConverter/content/js/Komodo/Prefs/Prefs.js"/>	
+    <script type="application/x-javascript" src="chrome://CaseConverter/content/js/Komodo/window/Pane/Pane.js"/>
+    <!--<script type="application/x-javascript" src="chrome://CaseConverter/content/js/Komodo/window/PrefsWindow/PrefsWindow.js"/>		-->
+    <script type="application/x-javascript" src="chrome://CaseConverter/content/js/Komodo/Node/Node.js"/>
+
+	
+	<!--EXTENSION SCRIPTS-->
+    <script type="application/x-javascript" src="chrome://CaseConverter/content/js/Converter/Converter.js"/>
+	<script type="application/x-javascript" src="chrome://CaseConverter/content/js/Converter/StringCaseType/StringCaseType.js"/>
+	<script type="application/x-javascript" src="chrome://CaseConverter/content/js/Converter/StringCaseConverter/StringCaseConverter.js"/>
+	
+	<!--TEST-->
+    <script type="application/x-javascript" src="chrome://CaseConverter/content/js/Komodo/UI/Test/UITest.js"/>
+	
+	<vbox id="CaseConverter-preferences">
+		<caption  label="CaseConverter"/> 
+		<groupbox orient="vertical"> 
+			<vbox style="max-width:128px">
+				<description value="&preferences.test;"/>
+				
+				<button
+					label="PrefsWindow().test()"
+					tooltiptext="PrefsWindow().test()" 
+					oncommand="PrefsWindow().test();" 
+				/>
+				<button
+					label="UI.test()"
+					tooltiptext="PrefsWindow().UI.test()" 
+					oncommand="PrefsWindow().UI.test();" 
+				/>
+				<button
+					label="Controls values to console"
+					oncommand="console.log( PrefsWindow().UI.values('#CaseConverter-preferences') );" 
+				/>
+				<button
+					label="Add checkboxes test"
+					oncommand="PrefsWindow().UI.append('#CaseConverter-preferences', PrefsWindow().UI.create( 'checkbox', ['Control 1', 'Control 2']) );"
+				/>
+				<button
+					label="Add textboxes test"
+					oncommand="PrefsWindow().UI.append('#CaseConverter-preferences', PrefsWindow().UI.create( 'groupbox', null, ['textbox', ['Textbox 1', 'Textbox 2']]) );"
+				/>
+				<button
+					label="Add groupbox test"
+					oncommand="PrefsWindow().UI.append('#CaseConverter-preferences', PrefsWindow().UI.create( 'menulist', null, ['menupopup', null, ['menuitem', ['Item 1', 'Item 2']]] ) );"
+				/>
+
+			</vbox>
+			<textbox id="" value="Lorem Ipsum" prefs="true" />
+		
+		</groupbox> 
+		<spacer flex="1"/>				
+		<hbox>
+			<spacer flex="1"/>
+			<button
+				class="box-inherit button-menubutton-button"
+				label="Save"
+				oncommand="PrefsWindow().save();"
+			/>
+		</hbox>
+    </vbox>
+	
+		<!--UITest-->
+		<vbox id="UiTest-preferences"><!-- UiTest wrapper with id attribute - Not required, but bettwer if exists -->
+			<button 
+				label="UITest.ini()"
+				style="border:1px solid lightblue"
+				oncommand="ko.windowManager.getMainWindow().ko.extensions.CaseConverter.UITest.init(this);"/>
+		</vbox>
+	
+</window>

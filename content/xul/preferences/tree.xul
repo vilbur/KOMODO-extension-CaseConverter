@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!-- Copyright (c) 2000-2006 ActiveState Software Inc.
+     See the file LICENSE.txt for licensing information. -->
+
+<!DOCTYPE overlay PUBLIC "-//MOZILLA//DTD XUL V1.0//EN" "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+<?xml-stylesheet href="chrome://CaseConverter/skin/pane.css"	type="text/css"?>
+
+<overlay id="CaseConverterOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<treechildren id="panelChildren" class="CaseConverter" >
+		  <treeitem insertafter="WindowsIntegration" advanced="true">
+			  <treerow>
+
+				<treecell
+					label="CaseConverter"
+					class="treecell-indent"
+					url="chrome://CaseConverter/content/xul/preferences/preferences.xul"
+				/>
+
+			  </treerow>
+		  </treeitem>
+	</treechildren>
+
+</overlay>

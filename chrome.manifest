@@ -1,0 +1,17 @@
+
+
+
+
+
+
+content	CaseConverter jar:CaseConverter.jar!/content/
+skin	CaseConverter classic/1.0 jar:CaseConverter.jar!/skin/
+locale	CaseConverter en-US jar:CaseConverter.jar!/locale/en-US/
+
+
+
+
+category require-path CaseConverter chrome://CaseConverter/content/
+
+overlay chrome://komodo/content/komodo.xul	chrome://CaseConverter/content/xul/overlay.xul
+overlay chrome://komodo/content/pref/pref.xul	chrome://CaseConverter/content/xul/preferences/tree.xul

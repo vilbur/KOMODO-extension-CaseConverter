@@ -1,0 +1,21 @@
+{
+  "keyboard_shortcut": "", 
+  "name": "CaseConverterTest-LoremIpsum", 
+  "language": "JavaScript", 
+  "trigger_enabled": 0, 
+  "value": [
+    "String 1 HABITASSE_AC_AENEANX  2 ultrices maecenas arcu,", 
+    "", 
+    "String 2 HABITASSE_AC_AENEANX  3 ultrices maecenas arcu,", 
+    "", 
+    "String 3 HABITASSE_AC_AENEANX  4 ultrices maecenas arcu,", 
+    "", 
+    "String 4 HABITASSE_AC_AENEANX  5 ultrices maecenas arcu,"
+  ], 
+  "trigger": "trigger_postopen", 
+  "rank": 100, 
+  "version": "1.0.12", 
+  "async": 1, 
+  "type": "macro", 
+  "icon": "koicon://ko-svg/chrome/icomoon/skin/type.svg"
+}

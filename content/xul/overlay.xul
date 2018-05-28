@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE overlay PUBLIC "-//MOZILLA//DTD XUL V1.0//EN" "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" [
+	<!ENTITY % overlayDTD SYSTEM "chrome://CaseConverter/locale/overlay.dtd">%overlayDTD;
+]>
+
+<overlay id="CaseConverter-overlay"
+		xmlns:html="http://www.w3.org/1999/xhtml"
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	
+	<!--EXTENSION CONNECTION TO KOMODO-->
+    <script type="application/x-javascript" src="chrome://CaseConverter/content/js/namespace.js"/>
+    <script type="application/x-javascript" src="chrome://CaseConverter/content/js/CaseConverter.js"/>	
+    <script type="application/x-javascript" src="chrome://CaseConverter/content/js/Komodo/Komodo/Komodo.js"/>
+	<script type="application/x-javascript" src="chrome://CaseConverter/content/js/Komodo/Document/Document.js"/>
+	<script type="application/x-javascript" src="chrome://CaseConverter/content/js/Komodo/UI/UI.js"/>
+	<script type="application/x-javascript" src="chrome://CaseConverter/content/js/Komodo/UI/Controls/ControlSet/ControlSet.js"/>
+	<script type="application/x-javascript" src="chrome://CaseConverter/content/js/Komodo/UI/Controls/Dropdown/Dropdown.js"/>
+	<script type="application/x-javascript" src="chrome://CaseConverter/content/js/Komodo/Prefs/Prefs.js"/>	
+    <script type="application/x-javascript" src="chrome://CaseConverter/content/js/Komodo/window/Pane/Pane.js"/>
+    <!--<script type="application/x-javascript" src="chrome://CaseConverter/content/js/Komodo/window/PrefsWindow/PrefsWindow.js"/>		-->
+    <script type="application/x-javascript" src="chrome://CaseConverter/content/js/Komodo/Node/Node.js"/>
+
+	<!--EXTENSION SCRIPTS-->
+    <script type="application/x-javascript" src="chrome://CaseConverter/content/js/Converter/Converter.js"/>
+	<script type="application/x-javascript" src="chrome://CaseConverter/content/js/Converter/StringCaseType/StringCaseType.js"/>
+	<script type="application/x-javascript" src="chrome://CaseConverter/content/js/Converter/StringCaseConverter/StringCaseConverter.js"/>
+	
+	<!--
+		COMMAND SET
+	-->
+	<commandset id="allcommands">
+		<command id="Tasks:HelloWorld" oncommand="ko.extensions.CaseConverter.menuTest('Hello World from CaseConverter');"/>		
+	</commandset>
+	
+	<!--
+		MENU TOOLS
+	-->
+	<menupopup id="popup_tools">
+		
+		<menuitem id="menu_extension_test"
+				label="&menu.menu_item;"
+				oncommand="ko.extensions.CaseConverter.localizedTest('Menu command')"
+				class="menu-iconic-wide"/>
+	
+	</menupopup>
+	
+	<!--
+		EXTENSION PANE
+	-->
+    <ko-pane id="workspace_bottom_area">
+        <browser type="ko-widget"
+				label="&pane.label;"
+				src="chrome://CaseConverter/content/xul/pane.xul"
+				tab_onfocus="ko.extensions.CaseConverter.Komodo.Pane.initPane();" />
+	</ko-pane>
+	
+</overlay>
