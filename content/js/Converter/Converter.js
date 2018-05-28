@@ -26,8 +26,9 @@
 		var koEditor	= require("ko/editor");
 		var scimoz	= ko.views.manager.currentView.scimoz;
 		
-		var current_pos	= scimoz.currentPos;
-		var current_anchor	= scimoz.anchor;
+		var current_pos;
+		var current_anchor;
+		var position_last;
 
 		var content_current	= '';
 		var content_new	= '';
@@ -45,8 +46,13 @@
 		 */
 		this.convertSelection = function()
 		{
-			setTextCurrent();			
+			setPositionCurrent();
+			setTextCurrent();
+			console.log(  'current_pos: ' + current_pos );
+			console.log(  'position_last: ' + position_last );
+
 			isConversionOfSameString();
+			
 			setContentCurrent();			
 			convertText();
 			setSelectionStarts();			
@@ -55,12 +61,14 @@
 			
 			try {
 				
-				//if( selection_starts.length == 1 )
-				//	replaceSingleSelection();
-				//	
-				//else
-					replaceMultiSelection();
+				if( selection_starts.length == 1 )
+					replaceSingleSelection();
 					
+				else
+					replaceMultiSelection();
+				
+				setPositionLast();
+
 			} finally {
 				ko.views.manager.currentView.scimoz.endUndoAction();
 			} 
@@ -90,16 +98,16 @@
 			REPLACE SELECTION
 		-----------------------------------------
 		*/
-		///** replaceSingleSelection
-		// */
-		//var replaceSingleSelection = function()
-		//{
-		//	saveSelection();
-		//							
-		//	koEditor.replaceSelection(text_converted);
-		//	
-		//	restoreSelection();
-		//};
+		/** replaceSingleSelection
+		 */
+		var replaceSingleSelection = function()
+		{
+			saveSelection();
+									
+			koEditor.replaceSelection(text_converted);
+			
+			restoreSelection();
+		};
 		/** replaceMultiSelection
 		 */
 		var replaceMultiSelection = function()
@@ -164,11 +172,10 @@
 			
 			setNewContent();
 			updateSelectionStarts();
-
 			//Logger.info(content_new, 'CaseConverter: '+'content_new');
-			
 			removeContent();
 			insertSnippet();
+			
 		};
 
 		/*---------------------------------------
@@ -194,8 +201,8 @@
 		 */
 		var isConversionOfSameString = function()
 		{
-			is_conversion_of_same_string = text_current===text_last && koEditor.getValue() === content_last;
-			//is_conversion_of_same_string = koEditor.getValue() === content_last;
+			//is_conversion_of_same_string = text_current===text_last && current_pos === position_last && koEditor.getValue() === content_last;
+			is_conversion_of_same_string = text_current===text_last && current_pos === position_last;
 			
 			console.log(  'is_conversion_of_same_string: ' + is_conversion_of_same_string );
 			//console.log(  'text_current: ' + text_current );
@@ -232,16 +239,29 @@
 		}; 
 		/** 
 		 */
-		var saveSelection = function()
+		var setPositionCurrent = function()
 		{
-			current_pos	= scimoz.currentPos;
-			current_anchor	= scimoz.anchor;
+			current_pos	= ko.views.manager.currentView.scimoz.currentPos;
 		};
+		/** 
+		 */
+		var setPositionLast = function()
+		{
+			position_last = ko.views.manager.currentView.scimoz.currentPos;
+		};
+		/**  
+		 */
+		var saveSelection = function() 
+		{ 
+		  current_pos  	= scimoz.currentPos; 
+		  current_anchor	= scimoz.anchor; 
+		}; 
+
 		/** 
 		 */
 		var restoreSelection = function()
 		{
-			scimoz.currentPos	= current_anchor > current_pos ? current_pos : current_anchor;
+			scimoz.currentPos	= position.current.anchor > position.current.pos ? position.current.pos : position.current.anchor;
 			scimoz.anchor	= scimoz.currentPos + text_converted.length;
 		};
 		/*---------------------------------------
